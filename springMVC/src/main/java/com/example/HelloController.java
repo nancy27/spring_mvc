@@ -2,7 +2,9 @@ package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +36,43 @@ public class HelloController {
         mv.addObject("result" , k);
         return mv;
     }
+    @RequestMapping("/form")
+        public String login(){
+            return "form";
+        }
+
+    @RequestMapping(value="/login",method = RequestMethod.POST)
+      public ModelAndView checkUser(@ModelAttribute("login1") LoginCredentials loginCredentials){
+        ModelAndView model1=new ModelAndView("success");
+        model1.addObject(loginCredentials);
+        return model1;
+      }
+// By using model attribute the code repetion can be avoided. It can be used where same model
+// attribute is used in multiple methods.
+    @ModelAttribute
+    public void addingCommonAttribute(Model model1){
+        model1.addAttribute("headerMessage","Logged In");
+    }
+
+    /*
+    This is another way instead of using modelattribute
+
+    @RequestMapping("/login")
+    public ModelAndView checkUser(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView mv= new ModelAndView();
+        String uname=request.getParameter("uname");
+        String pass=request.getParameter("pass");
+
+        if(uname.equals("abc")&&pass.equals("123")){
+            mv.setViewName("success");
+        }
+        else{
+            mv.setViewName("form");
+        }
+        return mv;
+    }
+
+         */
 
 
 }

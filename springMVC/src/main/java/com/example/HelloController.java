@@ -42,9 +42,9 @@ public class HelloController {
         }
 
     @RequestMapping(value="/login",method = RequestMethod.POST)
-      public ModelAndView checkUser(@ModelAttribute("login1") LoginCredentials loginCredentials){
+      public ModelAndView checkUser(@ModelAttribute("login1") LoginCredentials login1){
         ModelAndView model1=new ModelAndView("success");
-        model1.addObject(loginCredentials);
+
         return model1;
       }
 // By using model attribute the code repetion can be avoided. It can be used where same model

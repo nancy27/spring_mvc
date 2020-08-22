@@ -7,7 +7,7 @@
 </head
 
 <body>
-<h2>${headerMessage} as ${loginCredentials.uname}</h2>
+<h2>${headerMessage} as ${login1.uname} ${login1.id}</h2>
 Welcome
 
 </body>

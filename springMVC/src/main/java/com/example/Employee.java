@@ -2,13 +2,19 @@ package com.example;
 
 import com.sun.xml.internal.xsom.impl.scd.Iterators;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Employee {
+    @Size(min=6 , max=25)
+    @Pattern(regexp = "[^0-9]*]")
     private String employeeName;
     private Long mobileNo;
+    @Past
     private Date dob;
     private List<String> skills = new ArrayList<>();
     private Address address;

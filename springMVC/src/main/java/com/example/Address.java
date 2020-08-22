@@ -1,6 +1,7 @@
 package com.example;
 
 public class Address {
+
     private String country;
     private String city;
     private int pincode;

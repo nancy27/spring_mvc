@@ -1,12 +1,19 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 <head>
-<style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
 .error{
-color:red,
-position:fixed}
+color: red;
+position: fixed;
+text-align: left;
+margin-left:30px;
+
+}
 
 </style>
 </head>

@@ -1,10 +1,17 @@
 package com.example;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class Address {
 
+
+    @NotBlank
     private String country;
+    @NotBlank
     private String city;
-    private int pincode;
+
+    private Integer pincode;
 
     public String getCountry() {
         return country;
@@ -22,11 +29,11 @@ public class Address {
         this.city = city;
     }
 
-    public int getPincode() {
+    public Integer getPincode() {
         return pincode;
     }
 
-    public void setPincode(int pincode) {
+    public void setPincode(Integer pincode) {
         this.pincode = pincode;
     }
 }

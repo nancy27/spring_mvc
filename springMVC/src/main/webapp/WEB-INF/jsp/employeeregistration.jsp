@@ -1,58 +1,50 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
+<head>
+<style>
+.error{
+color:red,
+position:fixed}
+
+</style>
+</head>
+
+<body>
  <h2>Employee Registration Form:</h2>
- <form:errors path="employee.*"/>
-   <form action="register" method="post" >
 
-<p> UserName:
-   <input type="text" name="employeeName">
-</p>
-<p>Mobile No:
-   <input type="text" name="mobileNo">
-</p>
-<p>Date Of Birth:
-   <input type="text" name="dob"><br>
-</p>
+ <form:form action="register" method="POST" modelAttribute="employee">
+ <div align="center">
+
+ Employee Name: <form:input path="employeeName"/>
+ <form:errors path="employeeName" cssClass="error"/><br><br>
+
+ Mobile No(*): <form:input path="mobileNo"/>
+ <form:errors path="mobileNo" cssClass="error"/><br><br>
+
+ Date Of Birth: <form:input path="dob"/>
+  <form:errors path="dob" cssClass="error"/><br><br>
 <p>
-   <select name="skills" multiple >
-   <option value="Java Core">Java Core</option>
-   <option value="Spring Core">Spring Core</option>
-   <option value="Spring MVC">Spring MVC</option>
-   </select>
+Skills:
+<form:select path="skills" multiple="true">
+              <form:option value="Java Core"/>
+              <form:option value="Spring Core"/>
+              <form:option value="Spring MVC"/>
+
+          </form:select>
 </p>
+    Country:
+       <form:input path="address.country"/>
+       <form:errors path="address.country" cssClass="error"/><br><br>
+    City:
+       <form:input path="address.city"/>
+       <form:errors path="address.city" cssClass="error"/><br><br>
 
-   <table>
-   <tr><td>Employee`s Address </td></tr>
-     <tr>
-       <td>
-         Country:
-       </td>
-       <td>
-         <input type="text" name="address.country"><br>
-       </td>
-     </tr>
-     <tr>
-       <td>
-         City:
-       </td>
-       <td>
-          <input type="text" name="address.city"><br>
-       </td>
-     </tr>
+    Pincode:<form:input path="address.pincode"/><br>
 
-     <tr>
-     <td>
-        Pincode:
-     </td>
-     <td>
-        <input type="text" name="address.country"><br>
-     </td>
-     </tr>
-      <tr><td><input type="submit" value="Submit"></td></tr>
+   <input type="submit" value="submit">
 
-   </table>
-
-</form>
+</form:form>
+</body>
 </html>

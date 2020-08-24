@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("")
@@ -37,16 +39,24 @@ public class HelloController {
         return mv;
     }
     @RequestMapping("/form")
-        public String login(){
+        public String login(Model model){
+        model.addAttribute("login",new LoginCredentials());
             return "form";
         }
 
-    @RequestMapping(value="/login",method = RequestMethod.POST)
-      public ModelAndView checkUser(@ModelAttribute("login1") LoginCredentials login1){
-        ModelAndView model1=new ModelAndView("success");
+    @RequestMapping(value="/loginForm",method = RequestMethod.POST)
+      public ModelAndView checkUser(@Valid @ModelAttribute("login") LoginCredentials login,
+                                    BindingResult result){
+        if (result.hasErrors()){
+            ModelAndView model1=new ModelAndView("form");
+            return model1;
+        }else {
+            ModelAndView model1 = new ModelAndView("success");
+            return model1;
+        }
 
-        return model1;
       }
+      /*
 // By using model attribute the code repetion can be avoided. It can be used where same model
 // attribute is used in multiple methods.
     @ModelAttribute
@@ -73,6 +83,7 @@ public class HelloController {
     }
 
          */
+
 
 
 }

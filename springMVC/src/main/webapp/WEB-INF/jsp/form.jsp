@@ -1,20 +1,34 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
-<body>
-<form action="login" method="post" >
-<p> UserName:
-   <input type="text" name="uname"><br>
-</p>
-<p> Password:
-   <input type="password" name="pass"><br>
-</p>
-<p> Password:
-   <input type="text" name="id"><br>
-</p>
-   <input type="submit" value="Submit">
+<head>
+<style>
+.error{color:red,
+position:fixed}
 
-</form>
-</body> ``
+</style>
+</head>
+
+
+<body>
+
+<h2 align="center">Login Form:</h2>
+<form:form action="loginForm" method="POST" modelAttribute="login">
+<div align="center">
+
+Username: <form:input path="userName"/>
+<form:errors path="userName" cssClass="error"/><br><br>
+
+Password(*): <form:password path="passWord"/>
+<form:errors path="passWord" cssClass="error"/><br><br>
+
+<form:checkbox path="termsAndConditions" id="check"/>
+<label>I am Agreeing </label>
+<form:errors path="termsAndConditions" cssClass="error"/><br><br>
+
+<input type="submit" value="submit">
+
+</div>
+
+</form:form>
+</body>
 </html>

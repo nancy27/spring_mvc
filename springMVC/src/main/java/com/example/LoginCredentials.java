@@ -1,40 +1,44 @@
 package com.example;
 
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class LoginCredentials {
-    private String uname;
-    private String pass;
-    private long id;
+    @NotBlank
+    private String userName;
+
+    @NotBlank
+    private String passWord;
+
+    @AssertTrue(message = "You have to agree to login")
+    private boolean termsAndConditions;
+
 
     public LoginCredentials() {
     }
 
-    public LoginCredentials(String uname, String pass) {
-        this.uname = uname;
-        this.pass = pass;
-        this.id=id;
+    public String getUserName() {
+        return userName;
     }
 
-    public long getId() {
-        return id;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public String getUname() {
-        return uname;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+    public boolean isTermsAndConditions() {
+        return termsAndConditions;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public void setTermsAndConditions(boolean termsAndConditions) {
+        this.termsAndConditions = termsAndConditions;
     }
 
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
 }

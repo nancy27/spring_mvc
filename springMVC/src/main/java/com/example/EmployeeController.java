@@ -1,6 +1,7 @@
 package com.example;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +14,16 @@ import javax.validation.Valid;
 public class EmployeeController {
 
     @RequestMapping("/employeeregistration")
-    public ModelAndView register(){
-        ModelAndView model=new ModelAndView("employeeregistration");
-        return model;
+    public String register(Model model){
+        model.addAttribute("employee",new Employee());
+        //ModelAndView model=new ModelAndView("employeeregistration");
+        return "employeeregistration";
     }
 
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public ModelAndView registeringEmployee( @ModelAttribute("employee") @Valid Employee employee,
-                                            BindingResult result){
+                                             BindingResult result){
+
        if(result.hasErrors()){
         ModelAndView model=new ModelAndView("employeeregistration");
         return model;

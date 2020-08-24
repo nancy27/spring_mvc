@@ -1,29 +1,38 @@
 package com.example;
 
 import com.sun.xml.internal.xsom.impl.scd.Iterators;
+import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Employee {
+
     @Size(min=6 , max=25)
-    @Pattern(regexp = "[^0-9]*]")
+    @NotBlank(message = "NAme should not be empty")
+
     private String employeeName;
-    private Long mobileNo;
+
+    @Phone
+    //pattern works only for the Strings. so changed from long to string .
+    @Pattern(regexp = "[0-9()-\\.]*",message = "Mobile no should contain only integers.")
+    private String mobileNo;
     @Past
     private Date dob;
+
     private List<String> skills = new ArrayList<>();
+
+    @Valid
     private Address address;
 
     public Address getAddress() {
         return address;
     }
 
-    public Employee(String employeeName, Long mobileNo, Date dob, List<String> skills, Address address) {
+    public Employee(String employeeName, String mobileNo, Date dob, List<String> skills, Address address) {
         this.employeeName = employeeName;
         this.mobileNo = mobileNo;
         this.dob = dob;
@@ -38,13 +47,6 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String employeeName, Long mobileNo, Date dob, List<String> skills) {
-        this.employeeName = employeeName;
-        this.mobileNo = mobileNo;
-        this.dob = dob;
-        this.skills = skills;
-    }
-
     public String getEmployeeName() {
         return employeeName;
     }
@@ -53,11 +55,11 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
-    public Long getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(Long mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 
